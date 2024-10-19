@@ -74,4 +74,4 @@ Disclaimer - This still isn't secure enough and to be 100% safe, best practices 
 ### Demo
 [Click HERE To view app](https://mlops-movie-recommender-sys-7befc77d3861.herokuapp.com/)
 
-![logo](https://github.com/ArunSubramanian456/MLOPS_MovieRecommenderSystem/app_screenshot.png?raw=true)
+![logo](https://github.com/ArunSubramanian456/MLOPS_MovieRecommenderSystem/blob/main/app_screenshot.png?raw=true)
