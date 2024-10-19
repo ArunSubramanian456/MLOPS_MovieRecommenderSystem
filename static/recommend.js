@@ -1,4 +1,4 @@
-var my_api_key = process.env.my_api_key;
+var my_api_key = document.getElementById('api-key').getAttribute('value');
 
 $(function() {
   // Button will be disabled until we type anything inside the input field

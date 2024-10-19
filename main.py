@@ -9,6 +9,7 @@ import urllib.request
 import pickle
 import requests
 import re
+import os
 
 # load the nlp model and tfidf vectorizer from disk
 filename = 'nlp_model.pkl'
@@ -58,6 +59,8 @@ def get_suggestions():
     data = pd.read_csv('main_data.csv')
     return list(data['movie_title'].str.capitalize())
 
+
+
 # Flask API
 
 app = Flask(__name__)
@@ -65,8 +68,9 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/home")
 def home():
+    api_key = os.environ['my_api_key']
     suggestions = get_suggestions()
-    return render_template('home.html',suggestions=suggestions)
+    return render_template('home.html',suggestions=suggestions, api_key = api_key)
 
 @app.route("/similarity",methods=["POST"])
 def similarity():
@@ -130,6 +134,8 @@ def recommend():
 
     cast_details = {cast_names[i]:[cast_ids[i], cast_profiles[i], cast_bdays[i], cast_places[i], cast_bios[i]] for i in range(len(cast_places))}
 
+    api_key = os.environ['my_api_key']
+
     try:
         # web scraping to get user reviews from IMDB site
         clean_title = re.sub(r"[^\w\s]", "", title).replace(' ', '_').lower()
@@ -158,7 +164,7 @@ def recommend():
     # passing all the data to the html file
     return render_template('recommend.html',title=title,poster=poster,overview=overview,vote_average=vote_average,
         vote_count=vote_count,release_date=release_date,runtime=runtime,status=status,genres=genres,
-        movie_cards=movie_cards,casts=casts,cast_details=cast_details, reviews=movie_reviews)
+        movie_cards=movie_cards,casts=casts,cast_details=cast_details, reviews=movie_reviews, api_key = api_key)
 
 if __name__ == '__main__':
     app.run()
