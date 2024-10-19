@@ -42,7 +42,7 @@ To run a Flask deployment tests, run the following command
 
 Prepare your dataset:
 
-        1. Data Extraction
+        1. Data Extraction - Download data from sources provided in notebooks
         2. Exploratory Data Analysis(EDA)
         3. Feature Engineering
         4. Model Building and Tuning
